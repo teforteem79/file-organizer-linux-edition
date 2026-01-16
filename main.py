@@ -10,14 +10,12 @@ import back_function as back
 
 bg_c = "#2B2B2B" 
 
-def resource_path(relative_path): 
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for portable install """
+    # 1. Check if running from the /opt/ installation
+    base_path = os.path.dirname(os.path.abspath(__file__))
     
-    try:
-        base_path = sys._MEIPASS
-    except Exception:
-       
-        base_path = os.path.dirname(os.path.abspath("__file__"))
-    
+    # 2. Return the joined path
     return os.path.join(base_path, relative_path)
 
 # main.py
@@ -4853,4 +4851,3 @@ if __name__ == "__main__":
 |------------------------------------------------------------------------------------------
 
 """
-
