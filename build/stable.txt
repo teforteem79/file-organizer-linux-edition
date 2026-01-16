@@ -1,0 +1,2 @@
+build the package from start with
+dpkg-deb --build FO_Release file-organizer_1.0.0_amd64.deb
