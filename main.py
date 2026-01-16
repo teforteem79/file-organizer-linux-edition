@@ -8,7 +8,8 @@ import back_function as back
 
 #region Theme Presets
 
-bg_c = "#2B2B2B" 
+bg_c = "#2B2B2B"
+open_default_directory = os.path.expanduser("~") 
 
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for portable install """
@@ -594,7 +595,7 @@ class SortingPage(tk.Frame):
     #region Table
     def load_folder_data(self):
         """Get data from folder and populate table"""
-        folder = filedialog.askdirectory()
+        folder = filedialog.askdirectory(initialdir=open_default_directory)
         if not folder:
             return                                  #   If no folder selected - stop
         elif back.is_system_path_prohibited(folder) == True:
@@ -1036,7 +1037,7 @@ class FolderTreeView(ttk.Frame):
 
     def select_root_path(self):
         """Opens dialoge to choose root folder"""
-        path = filedialog.askdirectory()
+        path = filedialog.askdirectory(initialdir=open_default_directory)
         if path:
             self.output_root_path = path
             if len(path) >=15:
@@ -1151,7 +1152,7 @@ class GroupEditorDialog(tk.Toplevel):
         self.wait_window()
 
     def _browse_folder(self):
-        path = filedialog.askdirectory()
+        path = filedialog.askdirectory(initialdir=open_default_directory)
         if path:
             self.dest_combo.set(path)
 
@@ -2143,7 +2144,7 @@ class RenamingMenu(tk.Frame):
    
         folder = folder_path
         if not folder:
-         folder = filedialog.askdirectory()
+         folder = filedialog.askdirectory(initialdir=open_default_directory)
 
          if folder:
             self.source_folder_path = folder
@@ -2989,7 +2990,7 @@ class DesktopPage(tk.Frame):
 
     def _browse_rule_dest(self):
         """Open file dialog"""
-        path = filedialog.askdirectory()
+        path = filedialog.askdirectory(initialdir=open_default_directory)
         if path:
             self.rule_dest_combo.set(path)
 
@@ -3720,7 +3721,7 @@ class RuleEditorRow(ttk.Frame):
             pass
 
     def _browse_move(self, entry_widget):
-        path = filedialog.askdirectory()
+        path = filedialog.askdirectory(initialdir=open_default_directory)
         if path:
             entry_widget.delete(0, "end")
             entry_widget.insert(0, path)
@@ -3934,7 +3935,7 @@ class AutomationPage(tk.Frame):
             row.pack(fill="x", pady=2, padx=2)
             
     def _add_folder(self):
-        path = filedialog.askdirectory()
+        path = filedialog.askdirectory(initialdir=open_default_directory)
         if not path: return
         
         if any(item[0] == path for item in self.automation_config):
@@ -4262,7 +4263,7 @@ class VIPsPage(tk.Frame):
 
     def _browse_dest(self):
         if not self.selected_file_path: return
-        d = filedialog.askdirectory()
+        d = filedialog.askdirectory(initialdir=open_default_directory)
         if d:
             self.entry_dest.delete(0, "end")
             self.entry_dest.insert(0, d)
@@ -4406,7 +4407,7 @@ class RuleEditorDialog(tk.Toplevel):
         self.wait_window()
 
     def _browse_rule_dest(self):
-        path = filedialog.askdirectory()
+        path = filedialog.askdirectory(initialdir=open_default_directory)
         if path:
             self.rule_dest_combo.set(path)
 
